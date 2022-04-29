@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-// import { Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Hero } from '../models/hero.model';
 import { HeroService } from '../hero.service';
-// import { selectState } from '../state/heroes.selectors';
+import { AppState } from '../state/app.state';
+import { selectHeroesList } from '../state/heroes.selectors';
 import { loadHeroes } from '../state/heroes.actions';
 
 @Component({
@@ -14,23 +15,18 @@ import { loadHeroes } from '../state/heroes.actions';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  // heroes$: Observable<Hero[]>;
+  heroes$: any;
   heroes: Hero[] = [];
 
   constructor(
     private heroService: HeroService,
-    private store: Store
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {
     this.getHeroes();
-    console.log(this.store);
-    const result = this.store.select((state) => state);
-    result.subscribe(data => {
-      console.log(data);
-    });
-    console.log(result);
-    // this.heroes$ = this.store.select(selectHeroes);
+    this.heroes$ = this.store.select(selectHeroesList);
+    // console.log(this.heroes$);
   }
 
   getHeroes(): void {
