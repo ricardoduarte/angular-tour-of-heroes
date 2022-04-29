@@ -18,7 +18,7 @@ export const initialState: HeroState = {
   error: ""
 };
 
-export const collectionReducer = createReducer(
+export const heroesReducer = createReducer(
   initialState,
   on(loadHeroes, (state, { heroes }) => {
     console.log(heroes);
