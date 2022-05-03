@@ -15,7 +15,6 @@ import { loadHeroes } from '../state/heroes.actions';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  heroes$: any;
   heroes: Hero[] = [];
 
   constructor(
@@ -25,8 +24,8 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHeroes();
-    this.heroes$ = this.store.select(selectHeroesList);
-    // console.log(this.heroes$);
+    this.store.select(selectHeroesList)
+      .subscribe(heroes => this.heroes = heroes);
   }
 
   getHeroes(): void {

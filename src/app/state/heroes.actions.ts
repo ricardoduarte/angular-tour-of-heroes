@@ -24,7 +24,7 @@ export enum HeroActionTypes {
 
 export const loadHeroes = createAction(
   HeroActionTypes.LoadHeroes,
-  props<{ heroes: ReadonlyArray<Hero> }>()
+  props<{ heroes: Array<Hero> }>()
 );
 
 export const createHero = createAction(

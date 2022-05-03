@@ -5,14 +5,14 @@ import { loadHeroes } from './heroes.actions';
 import { Hero } from '../models/hero.model';
 
 export interface HeroState {
-  heroes: Hero[];
+  list: Hero[];
   hero: Hero;
   status: boolean;
   error: string
 }
 
 export const initialState: HeroState = {
-  heroes: [],
+  list: [],
   hero: {} as Hero,
   status: false,
   error: ""
@@ -21,7 +21,6 @@ export const initialState: HeroState = {
 export const heroesReducer = createReducer(
   initialState,
   on(loadHeroes, (state, { heroes }) => {
-    console.log(heroes);
-    return state;
+    return {...state, list: heroes};
   })
 );
