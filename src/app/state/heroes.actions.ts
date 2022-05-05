@@ -23,8 +23,17 @@ export enum HeroActionTypes {
 }
 
 export const loadHeroes = createAction(
-  HeroActionTypes.LoadHeroes,
+  HeroActionTypes.LoadHeroes
+);
+
+export const loadHeroesSuccess = createAction(
+  HeroActionTypes.LoadHeroesSuccess,
   props<{ heroes: Array<Hero> }>()
+);
+
+export const loadHeroesFail = createAction(
+  HeroActionTypes.LoadHeroesFail,
+  props<{ error: string }>()
 );
 
 export const createHero = createAction(
