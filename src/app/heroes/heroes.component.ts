@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 
 import { Hero } from '../models/hero.model';
 import { HeroService } from '../hero.service';
@@ -30,8 +29,6 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.store.dispatch(loadHeroes());
-    // this.heroService.getHeroes()
-    //   .subscribe(heroes => this.store.dispatch(loadHeroes({ heroes })));
   }
 
   add(name: string): void {
