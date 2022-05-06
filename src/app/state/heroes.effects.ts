@@ -30,4 +30,13 @@ export class HeroEffects {
         catchError(error => of({ type: HeroActionTypes.LoadHeroFail, error}))
       ))
   ));
+
+  createHero$ = createEffect(() => this.actions$.pipe(
+    ofType(HeroActionTypes.CreateHero),
+    switchMap(({ hero }) => this.heroService.addHero(hero)
+      .pipe(
+        map(hero => ({ type: HeroActionTypes.CreateHeroSuccess, hero})),
+        catchError(error => of({ type: HeroActionTypes.CreateHeroFail, error}))
+      ))
+  ));
 }

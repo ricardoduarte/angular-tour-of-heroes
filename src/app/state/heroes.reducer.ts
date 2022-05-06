@@ -48,7 +48,7 @@ export const heroesReducer = createReducer(
     return {...state, status: Status.LOADING};
   }),
   on(heroActions.createHeroSuccess, (state, { hero }) => {
-    return {...state, status: Status.SUCCESS, hero};
+    return {...state, status: Status.SUCCESS, list: [...state.list, hero]};
   }),
   on(heroActions.createHeroFail, (state, { error }) => {
     return {...state, status: Status.FAILED, error};

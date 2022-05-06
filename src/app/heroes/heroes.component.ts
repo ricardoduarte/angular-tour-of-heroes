@@ -6,7 +6,7 @@ import { Hero } from '../models/hero.model';
 import { HeroService } from '../hero.service';
 import { AppState } from '../state/app.state';
 import { selectHeroesList } from '../state/heroes.selectors';
-import { loadHeroes } from '../state/heroes.actions';
+import { loadHeroes, createHero } from '../state/heroes.actions';
 
 @Component({
   selector: 'app-heroes',
@@ -34,10 +34,7 @@ export class HeroesComponent implements OnInit {
   add(name: string): void {
     name = name.trim();
     if (!name) { return; }
-    this.heroService.addHero({ name } as Hero)
-      .subscribe(hero => {
-        this.heroes.push(hero);
-      });
+    this.store.dispatch(createHero({ hero: { name } as Hero }));
   }
 
   delete(hero: Hero): void {

@@ -56,7 +56,8 @@ export const loadHeroFail = createAction(
 );
 
 export const createHero = createAction(
-  HeroActionTypes.CreateHero
+  HeroActionTypes.CreateHero,
+  props<{ hero: Hero }>()
 );
 
 export const createHeroSuccess = createAction(
