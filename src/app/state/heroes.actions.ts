@@ -86,7 +86,8 @@ export const updateHeroFail = createAction(
 );
 
 export const deleteHero = createAction(
-  HeroActionTypes.DeleteHero
+  HeroActionTypes.DeleteHero,
+  props<{ heroId: number }>()
 );
 
 export const deleteHeroSuccess = createAction(

@@ -48,4 +48,13 @@ export class HeroEffects {
         catchError(error => of({ type: HeroActionTypes.UpdateHeroFail, error}))
       ))
   ));
+
+  deleteHero$ = createEffect(() => this.actions$.pipe(
+    ofType(HeroActionTypes.DeleteHero),
+    switchMap(({ heroId }) => this.heroService.deleteHero(heroId)
+      .pipe(
+        map(_ => ({ type: HeroActionTypes.DeleteHeroSuccess, heroId})),
+        catchError(error => of({ type: HeroActionTypes.DeleteHeroFail, error}))
+      ))
+  ));
 }

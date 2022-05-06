@@ -70,4 +70,15 @@ export const heroesReducer = createReducer(
   on(heroActions.updateHeroFail, (state, { error }) => {
     return {...state, status: Status.FAILED, error};
   }),
+  on(heroActions.deleteHero, (state) => {
+    return {...state, status: Status.LOADING};
+  }),
+  on(heroActions.deleteHeroSuccess, (state, { heroId }) => {
+    return {
+      ...state, status: Status.SUCCESS, list: state.list.filter(h => h.id !== heroId)
+    };
+  }),
+  on(heroActions.deleteHeroFail, (state, { error }) => {
+    return {...state, status: Status.FAILED, error};
+  }),
 );
