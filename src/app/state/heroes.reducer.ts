@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { loadHeroes, loadHeroesSuccess, loadHeroesFail } from './heroes.actions';
+import * as heroActions from './heroes.actions';
 import { Hero } from '../models/hero.model';
 
 enum Status {
@@ -26,13 +26,40 @@ export const initialState: HeroState = {
 
 export const heroesReducer = createReducer(
   initialState,
-  on(loadHeroes, (state) => {
+  on(heroActions.loadHeroes, (state) => {
     return {...state, status: Status.LOADING};
   }),
-  on(loadHeroesSuccess, (state, { heroes }) => {
+  on(heroActions.loadHeroesSuccess, (state, { heroes }) => {
     return {...state, status: Status.SUCCESS, list: heroes};
   }),
-  on(loadHeroesFail, (state, { error }) => {
+  on(heroActions.loadHeroesFail, (state, { error }) => {
+    return {...state, status: Status.FAILED, error};
+  }),
+  on(heroActions.loadHero, (state) => {
+    return {...state, status: Status.LOADING};
+  }),
+  on(heroActions.loadHeroSuccess, (state, { hero }) => {
+    return {...state, status: Status.SUCCESS, hero};
+  }),
+  on(heroActions.loadHeroFail, (state, { error }) => {
+    return {...state, status: Status.FAILED, error};
+  }),
+  on(heroActions.createHero, (state) => {
+    return {...state, status: Status.LOADING};
+  }),
+  on(heroActions.createHeroSuccess, (state, { hero }) => {
+    return {...state, status: Status.SUCCESS, hero};
+  }),
+  on(heroActions.createHeroFail, (state, { error }) => {
+    return {...state, status: Status.FAILED, error};
+  }),
+  on(heroActions.updateHero, (state) => {
+    return {...state, status: Status.LOADING};
+  }),
+  on(heroActions.updateHeroSuccess, (state, { heroName }) => {
+    return {...state, status: Status.SUCCESS, heroName};
+  }),
+  on(heroActions.updateHeroFail, (state, { error }) => {
     return {...state, status: Status.FAILED, error};
   }),
 );

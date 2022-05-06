@@ -9,3 +9,8 @@ export const selectHeroesList = createSelector(
   selectHeroesState,
   (state: HeroState) => state.list
 );
+
+export const selectHero = createSelector(
+  selectHeroesState,
+  (state: HeroState) => state.hero
+);

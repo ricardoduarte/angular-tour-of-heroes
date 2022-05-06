@@ -9,6 +9,10 @@ export enum HeroActionTypes {
   LoadHeroesSuccess = '[Hero] Load Heroes Success',
   LoadHeroesFail = '[Hero] Load Heroes Fail',
 
+  LoadHero = '[Hero] Load Hero',
+  LoadHeroSuccess = '[Hero] Load Hero Success',
+  LoadHeroFail = '[Hero] Load Hero Fail',
+
   CreateHero = '[Hero] Create Hero',
   CreateHeroSuccess = '[Hero] Create Hero Success',
   CreateHeroFail = '[Hero] Create Hero Fail',
@@ -36,17 +40,59 @@ export const loadHeroesFail = createAction(
   props<{ error: string }>()
 );
 
-export const createHero = createAction(
-  HeroActionTypes.CreateHero,
+export const loadHero = createAction(
+  HeroActionTypes.LoadHero,
+  props<{ heroId: number }>()
+);
+
+export const loadHeroSuccess = createAction(
+  HeroActionTypes.LoadHeroSuccess,
   props<{ hero: Hero }>()
 );
 
+export const loadHeroFail = createAction(
+  HeroActionTypes.LoadHeroFail,
+  props<{ error: string }>()
+);
+
+export const createHero = createAction(
+  HeroActionTypes.CreateHero
+);
+
+export const createHeroSuccess = createAction(
+  HeroActionTypes.CreateHeroSuccess,
+  props<{ hero: Hero }>()
+);
+
+export const createHeroFail = createAction(
+  HeroActionTypes.CreateHeroFail,
+  props<{ error: string }>()
+);
+
 export const updateHero = createAction(
-  HeroActionTypes.UpdateHero,
+  HeroActionTypes.UpdateHero
+);
+
+export const updateHeroSuccess = createAction(
+  HeroActionTypes.UpdateHeroSuccess,
   props<{ heroName: string }>()
 );
 
+export const updateHeroFail = createAction(
+  HeroActionTypes.UpdateHero,
+  props<{ error: string }>()
+);
+
 export const deleteHero = createAction(
-  HeroActionTypes.DeleteHero,
+  HeroActionTypes.DeleteHero
+);
+
+export const deleteHeroSuccess = createAction(
+  HeroActionTypes.DeleteHeroSuccess,
   props<{ heroId: number }>()
+);
+
+export const deleteHeroFail = createAction(
+  HeroActionTypes.DeleteHeroFail,
+  props<{ error: string }>()
 );
