@@ -56,8 +56,16 @@ export const heroesReducer = createReducer(
   on(heroActions.updateHero, (state) => {
     return {...state, status: Status.LOADING};
   }),
-  on(heroActions.updateHeroSuccess, (state, { heroName }) => {
-    return {...state, status: Status.SUCCESS, heroName};
+  on(heroActions.updateHeroSuccess, (state, { hero }) => {
+    const heroIndex = state.list.findIndex(o => o.id === hero.id);
+    let newHeroesList = [...state.list];
+    newHeroesList[heroIndex] = hero;
+    return {
+      ...state,
+      status: Status.SUCCESS,
+      hero,
+      list: newHeroesList
+    };
   }),
   on(heroActions.updateHeroFail, (state, { error }) => {
     return {...state, status: Status.FAILED, error};

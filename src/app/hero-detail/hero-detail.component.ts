@@ -6,8 +6,7 @@ import { Store } from '@ngrx/store';
 
 import { AppState } from '../state/app.state';
 import { Hero } from '../models/hero.model';
-import { HeroService } from '../hero.service';
-import { loadHero } from '../state/heroes.actions';
+import { loadHero, updateHero } from '../state/heroes.actions';
 import { selectHero } from '../state/heroes.selectors';
 
 @Component({
@@ -20,7 +19,6 @@ export class HeroDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: HeroService,
     private location: Location,
     private store: Store<AppState>
   ) {}
@@ -28,7 +26,7 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getHero();
     this.store.select(selectHero)
-      .subscribe(hero => this.hero = hero);
+      .subscribe(hero => this.hero = Object.assign({}, hero));
   }
 
   getHero(): void {
@@ -42,8 +40,7 @@ export class HeroDetailComponent implements OnInit {
 
   save(): void {
     if (this.hero) {
-      this.heroService.updateHero(this.hero)
-        .subscribe(() => this.goBack());
+      this.store.dispatch(updateHero({hero: this.hero}));
     }
   }
 

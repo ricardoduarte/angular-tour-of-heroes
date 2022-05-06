@@ -71,12 +71,13 @@ export const createHeroFail = createAction(
 );
 
 export const updateHero = createAction(
-  HeroActionTypes.UpdateHero
+  HeroActionTypes.UpdateHero,
+  props<{ hero: Hero }>()
 );
 
 export const updateHeroSuccess = createAction(
   HeroActionTypes.UpdateHeroSuccess,
-  props<{ heroName: string }>()
+  props<{ hero: Hero }>()
 );
 
 export const updateHeroFail = createAction(
