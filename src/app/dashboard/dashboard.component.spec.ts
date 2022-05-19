@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { DashboardComponent } from './dashboard.component';
+import { HeroSearchComponent } from '../hero-search/hero-search.component';
 import { AppState } from '../state/app.state';
 import { initialState as heroInitialState } from '../state/heroes.reducer';
 

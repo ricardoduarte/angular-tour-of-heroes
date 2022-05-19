@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
@@ -17,7 +18,8 @@ describe('HeroDetailComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ HeroDetailComponent ],
       imports: [
-        RouterTestingModule.withRoutes([])
+        RouterTestingModule.withRoutes([]),
+        FormsModule,
       ],
       providers: [provideMockStore({ initialState }),]
     })
